@@ -23,18 +23,21 @@ def load_and_explore_data(filename):
     Returns:
         pandas DataFrame containing the data
     """
-    # TODO: Load the CSV file using pandas
     
-    # TODO: Print the first 5 rows
+    data = pd.read_csv(filename)
     
-    # TODO: Print the shape of the dataset
+    print("=== House Price Data ===")
+    print(f"\nFirst 5 rows:")
+    print(data.head())
     
-    # TODO: Print basic statistics for ALL columns
+    print(f"\nDataset Shape: {data.shape[0]} rows, {data.shape[1]} columns")
     
-    # TODO: Print the column names
+    print(f"\nBasic Statistics:")
+    print(data.describe())
     
-    # TODO: Return the dataframe
-    pass
+    print(f"\nColumn Names: {list(data.columns)}")
+    
+    return data
 
 
 def visualize_features(data):
@@ -44,36 +47,55 @@ def visualize_features(data):
     Args:
         data: pandas DataFrame with features and Price
     """
-    # TODO: Create a figure with 2x2 subplots, size (12, 10)
-    
+    fig, axes = plt.subplots(2, 2, figsize=(12, 10))# TODO: Create a figure with 2x2 subplots, size (12, 10)
+    fig.suptitle('House Features vs Price', fontsize=16, fontweight='bold')
     # TODO: Add a main title: 'House Features vs Price'
     
     # TODO: Plot 1 (top left): SquareFeet vs Price
     #       - scatter plot, color='blue', alpha=0.6
     #       - labels and title
     #       - grid
-    
+    axes[0,0].scatter(data['SquareFeet'], data['Price'], color='blue', alpha=0.6)
+    axes[0,0].set_xlabel('SquareFeet (ft²)')
+    axes[0,0].set_ylabel('Price ($)')
+    axes[0,0].set_title('SquareFeet vs Price')
+    axes[0,0].grid(True, alpha=0.3)
+
     # TODO: Plot 2 (top right): Bedrooms vs Price
     #       - scatter plot, color='green', alpha=0.6
     #       - labels and title
     #       - grid
     
+    axes[0,1].scatter(data['Bedrooms'], data['Price'], color='red', alpha=0.6)
+    axes[0,1].set_xlabel('Bedrooms (# of bedrooms)')
+    axes[0,1].set_ylabel('Price ($)')
+    axes[0,1].set_title('Bedrooms vs Price')
+    axes[0,0].grid(True, alpha=0.3)
     # TODO: Plot 3 (bottom left): Bathrooms vs Price
     #       - scatter plot, color='red', alpha=0.6
     #       - labels and title
     #       - grid
     
+    axes[1,0].scatter(data['Bathrooms'], data['Price'], color='orange', aplha=0.6)
+    axes[1,0].set_xlabel('Bathrooms (# of bathrooms)')
+    axes[1,0].set_ylabel('Price ($)')
+    axes[1,0].set_title('Bathrooms vs Price')
+    axes[1,0].grid(True, alpha=0.3)
     # TODO: Plot 4 (bottom right): Age vs Price
     #       - scatter plot, color='orange', alpha=0.6
     #       - labels and title
     #       - grid
-    
+    axes[1,1].scatter(data['Age'], data['Price'])
+    axes[1,1].set_xlabel('Age (years)')
+    axes[1.1].set_ylabel('Price ($)')
+    axes[1,1].set_title('Age vs Price')
+    axes[1,1].grid(True, alpha=0.3)
     # TODO: Use plt.tight_layout() to make plots fit nicely
-    
-    # TODO: Save the figure as 'feature_plots.png' with dpi=300
-    
-    # TODO: Show the plot
-    pass
+
+    plt.tight_layout()
+    plt.savefig('house_features.png', dpi=300, bbox_inches='tight')
+    print("\n✓ Feature plots saved as 'house_features.png'")
+    plt.show()
 
 
 def prepare_features(data):
@@ -89,17 +111,19 @@ def prepare_features(data):
     """
     # TODO: Create a list of feature column names
     #       ['SquareFeet', 'Bedrooms', 'Bathrooms', 'Age']
-    
+    feature_columns = ['SquareFeet', 'Bedrooms', 'Bathrooms', 'Age']
     # TODO: Create X by selecting those columns from data
-    
+    X = data[feature_columns]
     # TODO: Create y by selecting the 'Price' column
-    
+    y = data['Price']
     # TODO: Print the shape of X and y
-    
+    print(f"\n=== Feature Preperation ===")
+    print(f"Features (X) shape: {X.shape}")
+    print(f"\nTarget (y) shape: {y.shape}")
     # TODO: Print the feature column names
-    
+    print(f"\nFeature colums: {list(X.columns)}")
     # TODO: Return X and y
-    pass
+    return X, y
 
 
 def split_data(X, y):
