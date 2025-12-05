@@ -138,11 +138,15 @@ def split_data(X, y):
         X_train, X_test, y_train, y_test
     """
     # TODO: Split into train (80%) and test (20%) with random_state=42
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size= 0.2, train_size= 0.8, random_state=42)
     
     # TODO: Print how many samples are in training and testing sets
+    print(f"\n=== Data Split ===")
+    print(f"Training set: {len(X_train)} samples ()")
     
+
     # TODO: Return X_train, X_test, y_train, y_test
-    pass
+    return X_train, X_test, y_train, y_test
 
 
 def train_model(X_train, y_train, feature_names):
