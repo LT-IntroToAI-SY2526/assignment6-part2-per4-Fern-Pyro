@@ -183,18 +183,12 @@ def train_model(X_train, y_train, feature_names):
 
     return model
     # TODO: Create a LinearRegression model
-    
     # TODO: Train the model using fit()
-    
     # TODO: Print the intercept
-    
     # TODO: Print each coefficient with its feature name
     #       Hint: use zip(feature_names, model.coef_)
-    
     # TODO: Print the full equation in readable format
-    
     # TODO: Return the trained model
-    pass
 
 
 def evaluate_model(model, X_test, y_test, feature_names):
@@ -210,12 +204,29 @@ def evaluate_model(model, X_test, y_test, feature_names):
     Returns:
         predictions array
     """
-    # TODO: Make predictions on X_test
+
+    predictions = model.predict(X_test)
+
+    r2 = r2_score(y_test, predictions)
+    mse = mean_squared_error(y_test, predictions)
+    rmse = np.sqrt(mse)
+
+    print(f"\n=== Model Performance ===")
+    print(f"R² Score: {r2:.4f}")
+    print(f" -> Model explains {r2*100:.2f}% of price variation")
     
-    # TODO: Calculate R² score
+    print(f"\nRoot Mean Squared Error: ${rmse:.2f}")
+    print(f" -> On average, perdictions are off by ${rmse:.2f}")
     
-    # TODO: Calculate MSE and RMSE
-    
+    print(f"\n=== Feature Importance ===")
+    feature_importance = list(zip(feature_names, np.abs(model.coef_)))
+    feature_names.sort(key=lambda x: x[1], reverse=True)
+
+    for i, (name, importance) in enumerate(feature_importance, 1):
+        print(f"{i}. {name}: {importance:.2f}")
+        
+    return predictions
+
     # TODO: Print R² score with interpretation
     
     # TODO: Print RMSE with interpretation
@@ -225,7 +236,6 @@ def evaluate_model(model, X_test, y_test, feature_names):
     #       Show which features matter most
     
     # TODO: Return predictions
-    pass
 
 
 def compare_predictions(y_test, predictions, num_examples=5):
