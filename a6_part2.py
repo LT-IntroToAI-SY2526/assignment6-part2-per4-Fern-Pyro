@@ -165,7 +165,23 @@ def train_model(X_train, y_train, feature_names):
     model = LinearRegression()
     model.fit(X_train, y_train)
 
-    
+    print(f"\n=== Model Training Complete ===")
+    print(f"Interceot: ${model.intercept_:.2f}")
+    print(f"\nCoefficients:")
+    for name, coef in zip(feature_names, model.coef_):
+        print(f"  {name}: {coef:.2f}")
+
+    print(f"\nEquation:")
+    equation = f"Price = "
+    for i, (name, coef) in enumerate(zip(feature_names, model.coef_)):
+        if i == 0:
+            equation += f"{coef:.2f} x {name}"
+        else:
+            equation += f" + ({coef:.2f}) x {name}"
+    equation += f" + {model.intercept_:.2f}"
+    print(equation)
+
+    return model
     # TODO: Create a LinearRegression model
     
     # TODO: Train the model using fit()
