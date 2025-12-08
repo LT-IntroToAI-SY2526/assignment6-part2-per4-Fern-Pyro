@@ -143,7 +143,7 @@ def split_data(X, y):
     # TODO: Print how many samples are in training and testing sets
     print(f"\n=== Data Split ===")
     print(f"Training set: {len(X_train)} samples ()")
-    
+    print(f"Training set: {len(X_test)} samples")
 
     # TODO: Return X_train, X_test, y_train, y_test
     return X_train, X_test, y_train, y_test
@@ -161,6 +161,11 @@ def train_model(X_train, y_train, feature_names):
     Returns:
         trained LinearRegression model
     """
+
+    model = LinearRegression()
+    model.fit(X_train, y_train)
+
+    
     # TODO: Create a LinearRegression model
     
     # TODO: Train the model using fit()
