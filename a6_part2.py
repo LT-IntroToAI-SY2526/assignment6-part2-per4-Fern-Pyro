@@ -224,7 +224,7 @@ def evaluate_model(model, X_test, y_test, feature_names):
 
     for i, (name, importance) in enumerate(feature_importance, 1):
         print(f"{i}. {name}: {importance:.2f}")
-        
+
     return predictions
 
     # TODO: Print R² score with interpretation
@@ -247,6 +247,15 @@ def compare_predictions(y_test, predictions, num_examples=5):
         predictions: predicted prices
         num_examples: number of examples to show
     """
+    print(f"\n=== Prediction Comparison ===")
+    print(f"{'Actual Price':<15} {'Predicted Price':<18} {''}")
+    for i in range(min(num_examples, len(y_test))):
+        actual = y_test.ilod[i]
+        predicted = predictions[i]
+        error = actual - predicted
+        pct_error = (abs(error) / actual) * 100
+
+        print(f"")
     # TODO: Print a header row with columns:
     #       Actual Price, Predicted Price, Error, % Error
     
@@ -288,30 +297,37 @@ if __name__ == "__main__":
     print("HOUSE PRICE PREDICTION - YOUR ASSIGNMENT")
     print("=" * 70)
     
+    data = load_and_explore_data('house_prices.csv')
     # Step 1: Load and explore
     # TODO: Call load_and_explore_data() with 'house_prices.csv'
     
     # Step 2: Visualize features
     # TODO: Call visualize_features() with the data
-    
+    visualize_features(data)
+
     # Step 3: Prepare features
     # TODO: Call prepare_features() and store X and y
-    
+    X, y = prepare_features(data)
+
     # Step 4: Split data
     # TODO: Call split_data() and store X_train, X_test, y_train, y_test
-    
+    X_train, X_test, y_train, y_test = split_data(X,y)
+
     # Step 5: Train model
     # TODO: Call train_model() with training data and feature names (X.columns)
-    
+    model = train_model(X_train, y_train, X.columns)
+
     # Step 6: Evaluate model
     # TODO: Call evaluate_model() with model, test data, and feature names
-    
+    predictions = evaluate_model(model, X_test, y_test, X.columns)
     # Step 7: Compare predictions
     # TODO: Call compare_predictions() showing first 10 examples
-    
+    compare_predictions(y_test, predictions)
+
     # Step 8: Make a new prediction
     # TODO: Call make_prediction() for a house of your choice
-    
+    make_prediction(model, 45, 3, 0)
+
     print("\n" + "=" * 70)
     print("✓ Assignment complete! Check your saved plots.")
     print("Don't forget to complete a6_part2_writeup.md!")
