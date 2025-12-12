@@ -94,7 +94,7 @@ def visualize_features(data):
 
     plt.tight_layout()
     plt.savefig('house_features.png', dpi=300, bbox_inches='tight')
-    print("\n✓ Feature plots saved as 'house_features.png'")
+    print("\n✓ Feature plots savehd as 'house_features.png'")
     plt.show()
 
 
@@ -255,7 +255,7 @@ def compare_predictions(y_test, predictions, num_examples=5):
         error = actual - predicted
         pct_error = (abs(error) / actual) * 100
 
-        print(f"")
+        print(f"${actual:>13.2f} ${predicted:>13.2f} ${error:>10.2f} {pct_error:>6.2f}%")
     # TODO: Print a header row with columns:
     #       Actual Price, Predicted Price, Error, % Error
     
@@ -264,7 +264,6 @@ def compare_predictions(y_test, predictions, num_examples=5):
     #       - Calculate error (actual - predicted)
     #       - Calculate percentage error
     #       - Print in a nice formatted table
-    pass
 
 
 def make_prediction(model, sqft, bedrooms, bathrooms, age):
@@ -283,13 +282,22 @@ def make_prediction(model, sqft, bedrooms, bathrooms, age):
     """
     # TODO: Create a DataFrame with the house features
     #       columns should be: ['SquareFeet', 'Bedrooms', 'Bathrooms', 'Age']
+    house_features = pd.DataFrame([[sqft, bedrooms, bathrooms, age]],
+                                  columns=['SquareFeet', 'Bedrooms', 'Bathrooms', 'Age'])
+    predicted_price = model.predict(house_features)[0]
+
+    print(f"\n=== New Prediction ===")
+    print(f"House features: {sqft:.0f}ft², {bedrooms} room(s), {bathrooms} bathroom(s), {age} years")
+    print(f"Predicted price: ${predicted_price:,.2f}")
+
+    return predicted_price
     
+    #SquareFeet, Bedrooms, Bathrooms, Age
     # TODO: Make a prediction using model.predict()
     
     # TODO: Print the house specs and predicted price nicely formatted
     
     # TODO: Return the predicted price
-    pass
 
 
 if __name__ == "__main__":
