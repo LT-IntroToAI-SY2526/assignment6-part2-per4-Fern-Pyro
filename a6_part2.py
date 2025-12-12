@@ -51,10 +51,7 @@ def visualize_features(data):
     fig.suptitle('House Features vs Price', fontsize=16, fontweight='bold')
     # TODO: Add a main title: 'House Features vs Price'
     
-    # TODO: Plot 1 (top left): SquareFeet vs Price
-    #       - scatter plot, color='blue', alpha=0.6
-    #       - labels and title
-    #       - grid
+    # Plot 1: SquareFeet vs Price
     axes[0,0].scatter(data['SquareFeet'], data['Price'], color='blue', alpha=0.6)
     axes[0,0].set_xlabel('SquareFeet (ft²)')
     axes[0,0].set_ylabel('Price ($)')
@@ -76,7 +73,7 @@ def visualize_features(data):
     #       - labels and title
     #       - grid
     
-    axes[1,0].scatter(data['Bathrooms'], data['Price'], color='orange', aplha=0.6)
+    axes[1,0].scatter(data['Bathrooms'], data['Price'], color='orange', alpha=0.6)
     axes[1,0].set_xlabel('Bathrooms (# of bathrooms)')
     axes[1,0].set_ylabel('Price ($)')
     axes[1,0].set_title('Bathrooms vs Price')
@@ -87,7 +84,7 @@ def visualize_features(data):
     #       - grid
     axes[1,1].scatter(data['Age'], data['Price'])
     axes[1,1].set_xlabel('Age (years)')
-    axes[1.1].set_ylabel('Price ($)')
+    axes[1,1].set_ylabel('Price ($)')
     axes[1,1].set_title('Age vs Price')
     axes[1,1].grid(True, alpha=0.3)
     # TODO: Use plt.tight_layout() to make plots fit nicely
@@ -220,7 +217,7 @@ def evaluate_model(model, X_test, y_test, feature_names):
     
     print(f"\n=== Feature Importance ===")
     feature_importance = list(zip(feature_names, np.abs(model.coef_)))
-    feature_names.sort(key=lambda x: x[1], reverse=True)
+    feature_importance.sort(key=lambda x: x[1], reverse=True)
 
     for i, (name, importance) in enumerate(feature_importance, 1):
         print(f"{i}. {name}: {importance:.2f}")
@@ -249,8 +246,10 @@ def compare_predictions(y_test, predictions, num_examples=5):
     """
     print(f"\n=== Prediction Comparison ===")
     print(f"{'Actual Price':<15} {'Predicted Price':<18} {''}")
+    print("-" * 60)
+
     for i in range(min(num_examples, len(y_test))):
-        actual = y_test.ilod[i]
+        actual = y_test.iloc[i]
         predicted = predictions[i]
         error = actual - predicted
         pct_error = (abs(error) / actual) * 100
@@ -334,7 +333,7 @@ if __name__ == "__main__":
 
     # Step 8: Make a new prediction
     # TODO: Call make_prediction() for a house of your choice
-    make_prediction(model, 45, 3, 0)
+    make_prediction(model, 2400, 3, 2, 0)
 
     print("\n" + "=" * 70)
     print("✓ Assignment complete! Check your saved plots.")
