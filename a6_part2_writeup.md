@@ -7,13 +7,12 @@
 Based on your house price model, rank the four features from most important to least important. Explain how you determined this ranking.
 
 **YOUR ANSWER:**
-1. Most Important: 
-2. 
-3. 
-4. Least Important: 
+1. Most Important: Square Feet
+2. Bedrooms
+3. Bathrooms
+4. Least Important: Age
 
-**Explanation:**
-
+SqaureFeet vs Price has the strongest correclation, as demonstarted by the mostly linear graph. “Bedrooms vs Price” and “Bathrooms vs Price” have a similar level of  correlation between the two variables, but because “Bedrooms vs Price” appears to have more data points I ranked it slightly higher. The Age vs Price graph demostrated little to no correlation between the two variables (a linear BFL would be mostly inacrruate to the actual data points).
 
 
 
