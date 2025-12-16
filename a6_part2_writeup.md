@@ -12,7 +12,7 @@ Based on your house price model, rank the four features from most important to l
 3. Bathrooms
 4. Least Important: Age
 
-SqaureFeet vs Price has the strongest correclation, as demonstarted by the mostly linear graph. “Bedrooms vs Price” and “Bathrooms vs Price” have a similar level of  correlation between the two variables, but because “Bedrooms vs Price” appears to have more data points I ranked it slightly higher. The Age vs Price graph demostrated little to no correlation between the two variables (a linear BFL would be mostly inacrruate to the actual data points).
+SqaureFeet vs Price has the strongest correlation, as demonstrated by the mostly linear graph. “Bedrooms vs Price” and “Bathrooms vs Price” have a similar level of  correlation between the two variables, but because “Bedrooms vs Price” appears to have more data points I ranked it slightly higher. The Age vs Price graph demonstrated little to no correlation between the two variables (a linear BFL would be mostly inaccurate to the actual data points).
 
 
 
@@ -22,10 +22,10 @@ SqaureFeet vs Price has the strongest correclation, as demonstarted by the mostl
 
 Choose TWO features from your model and explain what their coefficients mean in plain English. For example: "Each additional bedroom increases the price by $___"
 
-**Feature 1:**
+**Feature 1:** Each additional 200 sqft increased the price by about $25,000
 
 
-**Feature 2:**
+**Feature 2:** Each additional bedroom increased the price by about $100,000
 
 
 ---
@@ -45,16 +45,16 @@ What was your model's R² score? What does this tell you about how well your mod
 
 If you could add TWO more features to improve your house price predictions, what would they be and why?
 
-**Feature 1:**
+**Feature 1:** Location
 
 
-**Why it would help:**
+**Why it would help:** location of a house influences who is willing to buy and for how much they’re willing to pay
 
 
-**Feature 2:**
+**Feature 2:** Amenities
 
 
-**Why it would help:**
+**Why it would help:** features like an in ground pool, gym, smart home tech, etc. increase the desirability of houses, which means an increase in price
 
 
 ---
