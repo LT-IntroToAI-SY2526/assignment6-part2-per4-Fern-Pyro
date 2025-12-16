@@ -63,6 +63,5 @@ If you could add TWO more features to improve your house price predictions, what
 
 Would you trust this model to predict the price of a house with 6 bedrooms, 4 bathrooms, 3000 sq ft, and 5 years old? Why or why not? (Hint: Think about the range of your training data)
 
-**YOUR ANSWER:**
-
+My model’s R² score was 0.9936; this means the model is pretty accurate, as the closer it is to 1 the more accurate it is. There is still room for improvement, but it’s pretty close to 1 as is.
 
